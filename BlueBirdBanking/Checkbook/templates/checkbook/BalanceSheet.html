@@ -4,8 +4,11 @@
 			<div id="all-transactions-form">
 				<form> <!-- Use value to add the Django populated details-->
 					<br>
-					<label>Account Holder:</label><input id="accountholder" type="text" name="accountHolder" value="{{ account }}" readonly><br><br>
-					<label>Current Balance:</label><input id="balance" type="text" name="currentBalance" value="" readonly>
+					<label>Account Holder:</label>
+					<input id="accountholder" type="text" name="accountHolder" value="{{ account }}" readonly>
+					<br><br>
+					<label>Current Balance:</label>
+					<input id="balance" type="text" name="currentBalance" value="{{ balance }}" readonly>
 					<!-- Add link to href to make this button work -->
 					<button type="button"><a href="{% url 'transaction' %}">Add Transaction+</a></button>
 				</form>
@@ -21,11 +24,12 @@
 					<th>Amount</th>
 					<th>Balance</th>
 				</tr>
+				{% for key, total in table_contents.items %}
 				<tr>
-					<td class="center">{{ Key.date }}</td>
-					<td class="center">{{ Key.date }}</td>
-					<td class="left">{{ Key.description }}</td>
-					<td class="right">{{ Key.amount }}</td>
+					<td class="center">{{ key.date }}</td>
+					<td class="center">{{ key.type }}</td>
+					<td class="left">{{ key.description }}</td>
+					<td class="right">{{ key.amount }}</td>
 					<td class="right">{{ total }}</td>
 				</tr>
 				{{% endfor %}

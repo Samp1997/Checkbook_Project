@@ -25,7 +25,7 @@ def create_account(request):
             return redirect('index')  # Returns user back to the home page
         content = {'form': form}  # Saves content to the template as a dictionary
         # adds content of form to page
-    return render(request, 'checkbook/CreateNewAccount.html')
+    return render(request, 'checkbook/CreateNewAccount.html, content')
 
 
 # This function will render the balance page when requested
@@ -41,8 +41,8 @@ def balance(request, pk):
         else:
             current_total -= t.amount
             table_contents.update({t: current_total})
-    content = {'account': account, 'tabel_contents': table_contents, 'balance': current_total}
-    return render(request, 'checkbook/BalanceSheet.html')
+    content = {'account': account, 'table_contents': table_contents, 'balance': current_total}
+    return render(request, 'checkbook/BalanceSheet.html', content)
 
 
 # This function will render the Transaction page when requested
