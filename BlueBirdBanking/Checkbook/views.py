@@ -23,9 +23,9 @@ def create_account(request):
         if form.is_valid():  # Check to see if the submitted form is valid and if so, saves the form
             form.save()  # Saves New Account
             return redirect('index')  # Returns user back to the home page
-        content = {'form': form}  # Saves content to the template as a dictionary
-        # adds content of form to page
-    return render(request, 'checkbook/CreateNewAccount.html, content')
+    content = {'form': form}  # Saves content to the template as a dictionary
+    # adds content of form to page
+    return render(request, 'checkbook/CreateNewAccount.html', content)
 
 
 # This function will render the balance page when requested
@@ -54,6 +54,6 @@ def transaction(request):
             pk = request.POST['account']
             form.save()  # Saves New Account
             return balance(request, pk)
-        content = {'form': form}
-        # adds content of form to page
-        return render(request, 'checkbook/AddTransaction.html', content)
+    content = {'form': form}
+    # adds content of form to page
+    return render(request, 'checkbook/AddTransaction.html', content)
